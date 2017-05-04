@@ -2,12 +2,14 @@ package com.example.rachamim.hacaktonproj;
 
 
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,8 +42,8 @@ public class FindACarActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference dbRef = database.getReference().getRoot();
-    private boolean isBlocked=true;
-    private boolean isBlocking=false;
+    private boolean isBlocked = true;
+    private boolean isBlocking = false;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -50,7 +52,7 @@ public class FindACarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_car);
 
-        String email = getIntent().getStringExtra("LoggedInEmail").toString();
+        final String email = getIntent().getStringExtra("LoggedInEmail").toString();
         final String uuid = getIntent().getStringExtra("LoggedInUUID").toString();
 
         licence = (EditText) findViewById(R.id.licence);
@@ -67,8 +69,8 @@ public class FindACarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 blockingBtn.setBackground(getDrawable(R.drawable.btn1));
                 blockedBtn.setBackground(getDrawable(R.drawable.btn2));
-                isBlocking=true;
-                isBlocked=false;
+                isBlocking = true;
+                isBlocked = false;
                 send.setText("Send");
             }
         });
@@ -78,8 +80,8 @@ public class FindACarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 blockingBtn.setBackground(getDrawable(R.drawable.btn2));
                 blockedBtn.setBackground(getDrawable(R.drawable.btn1));
-                isBlocking=false;
-                isBlocked=true;
+                isBlocking = false;
+                isBlocked = true;
                 send.setText("Call");
             }
         });
@@ -91,49 +93,62 @@ public class FindACarActivity extends AppCompatActivity {
                 final String licencePlate = licence.getText().toString();
 
 
-                if (isBlocking){
+                if (isBlocking) {
                     dbRef.child("users").child(uuid).child("blocking").setValue(true);
                     dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            boolean flag=false;
-                            for (DataSnapshot userData : dataSnapshot.getChildren()){
+                            boolean flag = false;
+                            for (DataSnapshot userData : dataSnapshot.getChildren()) {
                                 User user = userData.getValue(User.class);
                                 user.setUUID(userData.getKey());
-                                if (user.getLicensePlate().equals(licencePlate)){
-                                    flag=true;
+                                if (user.getLicensePlate().equals(licencePlate)) {
+                                    flag = true;
                                     dbRef.child("users").child(user.getUUID()).child("blocked").setValue(true);
                                     dbRef.child("users").child(user.getUUID()).child("otherUserId").setValue(uuid);
                                     dbRef.child("users").child(uuid).child("otherUserId").setValue(user.getUUID());
 
-                                    Intent intent = new Intent(FindACarActivity.this,MainActivity.class);
+                                    Intent intent = new Intent(FindACarActivity.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             }
-                            if (!flag) Toast.makeText(getApplicationContext(),"Unable to find licence plate",Toast.LENGTH_LONG).show();
-                            flag=false;
+                            if (!flag)
+                                Toast.makeText(getApplicationContext(), "Unable to find licence plate", Toast.LENGTH_LONG).show();
+                            flag = false;
                         }
+
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
                     });
-                }
-                else {
+                    android.support.v4.app.NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                                    .setContentTitle("G Parking")
+                                    .setContentText("You are blocked by " + email.split("@")[0] + " :(");
+                    int mNotificationId = 001;
+                    // Gets an instance of the NotificationManager service
+                    NotificationManager mNotifyMgr =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    // Builds the notification and issues it.
+                    mNotifyMgr.notify(mNotificationId, mBuilder.build());
+                } else {
                     dbRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            boolean flag=false;
-                            for (DataSnapshot userData : dataSnapshot.getChildren()){
+                            boolean flag = false;
+                            for (DataSnapshot userData : dataSnapshot.getChildren()) {
                                 User user = userData.getValue(User.class);
-                                if (user.getLicensePlate().equals(licencePlate)){
+                                if (user.getLicensePlate().equals(licencePlate)) {
                                     Intent intent = new Intent(Intent.ACTION_DIAL);
-                                    intent.setData(Uri.parse("tel:"+ user.getPhone()));
+                                    intent.setData(Uri.parse("tel:" + user.getPhone()));
                                     startActivity(intent);
                                 }
                             }
-                            if (!flag) Toast.makeText(getApplicationContext(),"Unable to find licence plate",Toast.LENGTH_LONG).show();
+                            if (!flag)
+                                Toast.makeText(getApplicationContext(), "Unable to find licence plate", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
