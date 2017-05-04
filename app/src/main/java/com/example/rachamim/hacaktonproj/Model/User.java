@@ -27,21 +27,28 @@ public class User {
     private String licensePlate;
     private String password;
     private String lastUpdate;
-    private boolean blocked;
-    private boolean blocking;
+    private String blocked;
+    private String blocking;
     private String otherUserId;
 
-    public User(String mail,String phone, String licensePlate, String date) {
+    public User(String mail,String phone, String licensePlate, String date, String blocked, String blocking, String otherUserId) {
         this.email = mail;
         this.phone = phone;
         this.licensePlate = licensePlate;
         this.lastUpdate = date;
+        this.blocked = blocked;
+        this.blocking = blocking;
+        this.otherUserId = otherUserId;
     }
 
-    public User(String mail,String password, String lastUpdate){
+    public User(String mail, String password, String phone, String lastUpdate){
         this.email = mail;
         this.password = password;
+        this.phone = phone;
         this.lastUpdate = lastUpdate;
+        this.blocked = "false";
+        this.blocking = "false";
+        this.otherUserId = "-1";
     }
 
     public void setPassword(String password) {
