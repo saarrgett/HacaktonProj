@@ -1,5 +1,6 @@
 package com.example.rachamim.hacaktonproj;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -91,6 +93,17 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+                    android.support.v4.app.NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                                    .setContentTitle("G Parking")
+                                    .setContentText("You are blocked by " + email.split("@")[0] + " :(");
+                    int mNotificationId = 001;
+                    // Gets an instance of the NotificationManager service
+                    NotificationManager mNotifyMgr =
+                            (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                    // Builds the notification and issues it.
+                    mNotifyMgr.notify(mNotificationId, mBuilder.build());
                 }
                 if (isBlocked[0] == false && isBlocking[0] == false) {
                     currentMessageElem.setText(R.string.no_updates);
