@@ -15,6 +15,7 @@
     <string name="you_blocked_message">You are blocked by</string>
     <string name="you_blocking_message">You are blocking</string>
     <string name="no_updates">No Updates</string>
+    <string name="empty"></string>
 
     <string-array name="Blockedarrays">
         <item>Blocked</item>
