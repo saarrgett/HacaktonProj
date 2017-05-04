@@ -109,6 +109,8 @@ public class FindACarActivity extends AppCompatActivity {
                                     dbRef.child("users").child(uuid).child("otherUserId").setValue(user.getUUID());
 
                                     Intent intent = new Intent(FindACarActivity.this, MainActivity.class);
+                                    intent.putExtra("LoggedInEmail", email);
+                                    intent.putExtra("LoggedInUUID", uuid);
                                     startActivity(intent);
                                     finish();
                                 }
