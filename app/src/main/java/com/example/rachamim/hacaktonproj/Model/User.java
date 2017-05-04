@@ -8,6 +8,8 @@ public class User {
     private String email;
     private String phone;
 
+    public User(){}
+
     public String getLicensePlate() {
         return licensePlate;
     }
@@ -30,6 +32,15 @@ public class User {
     private Boolean blocked;
     private Boolean blocking;
     private String otherUserId;
+    private String UUID;
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
+    }
 
     public Boolean getBlocked() {
         return blocked;
