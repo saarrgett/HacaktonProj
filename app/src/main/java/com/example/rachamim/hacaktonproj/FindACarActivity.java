@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindCarActivity extends AppCompatActivity {
+public class FindACarActivity extends AppCompatActivity {
 
     private EditText licence;
     private ImageButton send;

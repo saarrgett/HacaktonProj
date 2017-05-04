@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".FindCarActivity"></activity>
+        <activity android:name=".FindACarActivity" />
     </application>
 
 </manifest>
