@@ -84,6 +84,7 @@ public class LoginActivity  extends ActionBarActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                System.out.println();
                                 Map<String, Object> map = new HashMap<String, Object>();
                                 map.put("email", emailAddress);
                                 dbRef.child("users").child(mAuth.getCurrentUser().getUid()).updateChildren(map);
