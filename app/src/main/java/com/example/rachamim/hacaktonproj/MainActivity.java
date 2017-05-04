@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final TextView currentMessageElem = (TextView) findViewById(R.id.message);
-        final TextView currentLicensePlateElem = (TextView) findViewById(R.id.licenceNumber);
+        final TextView extraInfoElem = (TextView) findViewById(R.id.licenceNumber);
         final Button currentButtonElem = (Button) findViewById(R.id.sendBtn);
         final Boolean[] isBlocked = {false};
         final Boolean[] isBlocking = {false};
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                                     for (DataSnapshot userData : dataSnapshot.getChildren()) {
                                         if (userData.getKey().equals(uuidOfOtherUser)) {
                                             final User user = userData.getValue(User.class);
-                                            String licensePlateStr = user.getLicensePlate();
-                                            currentLicensePlateElem.setText(licensePlateStr);
+                                            String userNameStr = user.getEmail().split("@")[0];
+                                            extraInfoElem.setText(userNameStr);
                                             currentButtonElem.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
+
                     android.support.v4.app.NotificationCompat.Builder mBuilder =
                             new NotificationCompat.Builder(getApplicationContext())
                                     .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (isBlocked[0] == false && isBlocking[0] == false) {
                     currentMessageElem.setText(R.string.no_updates);
-                    currentLicensePlateElem.setText("");
+                    extraInfoElem.setText("");
                     currentButtonElem.setText(R.string.find_a_car);
                     currentButtonElem.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -148,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
                                     for (final DataSnapshot userData : dataSnapshot.getChildren()) {
                                         if (userData.getKey().equals(uuidOfOtherUser)) {
                                             final User user = userData.getValue(User.class);
-                                            String licensePlateStr = user.getLicensePlate();
-                                            currentLicensePlateElem.setText(licensePlateStr);
+                                            String emailStr = user.getEmail().split("@")[0];
+                                            extraInfoElem.setText(emailStr);
                                             currentButtonElem.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (isBlocked[0] == false && isBlocking[0] == false) {
                     currentMessageElem.setText(R.string.no_updates);
-                    currentLicensePlateElem.setText("");
+                    extraInfoElem.setText("");
                     currentButtonElem.setText(R.string.find_a_car);
                     currentButtonElem.setOnClickListener(new View.OnClickListener() {
                         @Override
