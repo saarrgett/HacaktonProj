@@ -45,6 +45,7 @@ public class FindACarActivity extends AppCompatActivity {
     private boolean isBlocked = true;
     private boolean isBlocking = false;
 
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -60,8 +61,6 @@ public class FindACarActivity extends AppCompatActivity {
         blockedBtn = (Button) findViewById(R.id.blockedbtn);
         blockingBtn = (Button) findViewById(R.id.blockingBtn);
 
-        blockedBtn.setBackground(getDrawable(R.drawable.btn2));
-        blockingBtn.setBackground(getDrawable(R.drawable.btn2));
 
         blockingBtn.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -144,6 +143,7 @@ public class FindACarActivity extends AppCompatActivity {
                             for (DataSnapshot userData : dataSnapshot.getChildren()) {
                                 User user = userData.getValue(User.class);
                                 if (user.getLicensePlate().equals(licencePlate)) {
+                                    flag=true;
                                     Intent intent = new Intent(Intent.ACTION_DIAL);
                                     intent.setData(Uri.parse("tel:" + user.getPhone()));
                                     startActivity(intent);
@@ -151,6 +151,7 @@ public class FindACarActivity extends AppCompatActivity {
                             }
                             if (!flag)
                                 Toast.makeText(getApplicationContext(), "Unable to find licence plate", Toast.LENGTH_LONG).show();
+                            flag=false;
                         }
 
                         @Override
@@ -164,12 +165,6 @@ public class FindACarActivity extends AppCompatActivity {
             }
         });
 
-
-//        email = (EditText) findViewById(R.id.et_login_email);
-//        password = (EditText) findViewById(R.id.et_login_password);
-//        login = (Button) findViewById(R.id.btn_login_login);
-//        signup = (TextView) findViewById(R.id.tv_login_signup);
-//        mAuth = FirebaseAuth.getInstance();
 
 
     }
