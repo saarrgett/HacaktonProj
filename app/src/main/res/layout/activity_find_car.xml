@@ -21,6 +21,10 @@
             android:layout_height="50dp"
             android:background="@drawable/btn3"
             android:textAlignment="center"
+            tools:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
             android:id="@+id/spinner">
         </Spinner>
     </LinearLayout>
@@ -38,7 +42,10 @@
             android:background="@drawable/btn3"
             android:hint="Licence Plate"
             android:textAlignment="center"
-            android:fontFamily="sans-serif-condensed"
+            tools:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
             android:id="@+id/licence">
         </EditText>
     </LinearLayout>
@@ -49,13 +56,19 @@
         android:layout_marginTop="50dp"
         android:layout_gravity="center">
 
-        <ImageButton
+        <Button
             android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/btn1"
+            android:textAlignment="center"
+            android:text="Send"
+            tools:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
             android:id="@+id/sendBtn">
-        </ImageButton>
+        </Button>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pager"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context="com.example.rachamim.hacaktonproj.MainActivity"/>
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background2"
+    android:weightSum="10"
+    tools:context="com.example.rachamim.hacaktonproj.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="center"
+            android:text="bla bla"
+            android:id="@+id/message"
+            tools:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="serif">
+        </TextView>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:textAlignment="center"
+            tools:textColor="@android:color/white"
+            android:text="bla l"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="serif"
+            android:id="@+id/licenceNumber">
+        </TextView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn1"
+            android:textAlignment="center"
+            android:text="Send"
+            android:id="@+id/sendBtn">
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

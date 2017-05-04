@@ -89,7 +89,7 @@ public class LoginActivity  extends ActionBarActivity {
                                 map.put("email", emailAddress);
                                 dbRef.child("users").child(mAuth.getCurrentUser().getUid()).updateChildren(map);
 
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, FindACarActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

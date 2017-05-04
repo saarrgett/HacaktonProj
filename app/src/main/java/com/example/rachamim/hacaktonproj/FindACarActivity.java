@@ -2,6 +2,8 @@ package com.example.rachamim.hacaktonproj;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +21,7 @@ import java.util.List;
 public class FindACarActivity extends AppCompatActivity {
 
     private EditText licence;
-    private ImageButton send;
+    private Button send;
     private Spinner spinner;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -32,7 +34,7 @@ public class FindACarActivity extends AppCompatActivity {
 
 
         licence = (EditText) findViewById(R.id.licence);
-        send = (ImageButton) findViewById(R.id.sendBtn);
+        send = (Button) findViewById(R.id.sendBtn);
         spinner = (Spinner) findViewById(R.id.spinner);
 
         List<String > list = new ArrayList<>();
@@ -42,6 +44,34 @@ public class FindACarActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String string = spinner.getSelectedItem().toString();
+                if (string.equals("Blocked")){
+                    send.setText("Call");
+                }
+                else send.setText("Send");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String licencePlate = licence.getText().toString();
+                String category = spinner.getSelectedItem().toString();
+
+
+
+
+            }
+        });
 
 
 //        email = (EditText) findViewById(R.id.et_login_email);
