@@ -31,7 +31,6 @@ public class User {
     private Boolean blocking;
     private String otherUserId;
 
-
     public Boolean getBlocked() {
         return blocked;
     }
@@ -56,14 +55,14 @@ public class User {
         this.otherUserId = otherUserId;
     }
 
-    public User(String mail, String phone, String licensePlate, Boolean blocked, Boolean blocking, String otherUserId, String date) {
+    public User(String mail, String phone, String licensePlate, String date, Boolean blocked, Boolean blocking, String otherUserId) {
         this.email = mail;
         this.phone = phone;
+        this.licensePlate = licensePlate;
+        this.lastUpdate = date;
         this.blocked = blocked;
         this.blocking = blocking;
         this.otherUserId = otherUserId;
-        this.licensePlate = licensePlate;
-        this.lastUpdate = date;
     }
 
     public User(String mail, String password, String phone, String lastUpdate){
@@ -89,7 +88,16 @@ public class User {
         return email;
     }
 
+
+    public String getlastUpdate() {
+        return lastUpdate;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setlastUpdate (String date) {
+        this.lastUpdate = date;
     }
 }

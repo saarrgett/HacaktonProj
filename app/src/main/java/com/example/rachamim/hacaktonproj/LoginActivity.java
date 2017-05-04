@@ -93,6 +93,7 @@ public class LoginActivity  extends ActionBarActivity {
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                                 intent.putExtra("LoggedInEmail", emailAddress);
+                                intent.putExtra("LoggedInUUID", mAuth.getCurrentUser().getUid());
 
                                 startActivity(intent);
                             } else {
