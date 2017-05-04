@@ -27,18 +27,43 @@ public class User {
     private String licensePlate;
     private String password;
     private String lastUpdate;
-    private String blocked;
-    private String blocking;
+    private Boolean blocked;
+    private Boolean blocking;
     private String otherUserId;
 
-    public User(String mail,String phone, String licensePlate, String date, String blocked, String blocking, String otherUserId) {
+
+    public Boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public Boolean getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(Boolean blocking) {
+        this.blocking = blocking;
+    }
+
+    public String getOtherUserId() {
+        return otherUserId;
+    }
+
+    public void setOtherUserId(String otherUserId) {
+        this.otherUserId = otherUserId;
+    }
+
+    public User(String mail, String phone, String licensePlate, Boolean blocked, Boolean blocking, String otherUserId, String date) {
         this.email = mail;
         this.phone = phone;
-        this.licensePlate = licensePlate;
-        this.lastUpdate = date;
         this.blocked = blocked;
         this.blocking = blocking;
         this.otherUserId = otherUserId;
+        this.licensePlate = licensePlate;
+        this.lastUpdate = date;
     }
 
     public User(String mail, String password, String phone, String lastUpdate){
@@ -46,8 +71,8 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.lastUpdate = lastUpdate;
-        this.blocked = "false";
-        this.blocking = "false";
+        this.blocked = false;
+        this.blocking = false;
         this.otherUserId = "-1";
     }
 
@@ -64,16 +89,7 @@ public class User {
         return email;
     }
 
-
-    public String getlastUpdate() {
-        return lastUpdate;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setlastUpdate (String date) {
-        this.lastUpdate = date;
     }
 }

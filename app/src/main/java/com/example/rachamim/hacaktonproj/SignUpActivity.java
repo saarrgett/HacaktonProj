@@ -107,7 +107,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            User user = new User(finalEmailString, finalPhoneString, finalLicensePlateString, date, "false", "false", "-1");
+                                            User user = new User(finalEmailString, finalPhoneString, finalLicensePlateString,false, false, "-1", date);
                                             dbRef.child("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
                                         }
                                     }
