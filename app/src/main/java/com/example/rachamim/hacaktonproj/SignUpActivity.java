@@ -107,8 +107,12 @@ public class SignUpActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()) {
-                                            User user = new User(finalEmailString, finalPhoneString, finalLicensePlateString, date, "false", "false", "-1");
-                                            dbRef.child("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
+                                            User user = new User(finalEmailString, finalPhoneString, finalLicensePlateString, date, false, false, "-1");
+                                            String uuid = mAuth.getCurrentUser().getUid();
+                                            dbRef.child("users").child(uuid).setValue(user);
+                                            dbRef.child("users").child(uuid).child("blocked").setValue(user.getBlocked());
+                                            dbRef.child("users").child(uuid).child("blocking").setValue(user.getBlocking());
+                                            dbRef.child("users").child(uuid).child("otherUserId").setValue(user.getOtherUserId());
                                         }
                                     }
                                 });
