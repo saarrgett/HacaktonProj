@@ -9,4 +9,9 @@
     <string name="login_button_label">Login</string>
     <string name="title_section1">I Blocked</string>
     <string name="title_section2">I Was Blocked!</string>
+
+    <string-array name="Blockedarrays">
+        <item>Blocked</item>
+        <item>Blocking</item>
+    </string-array>
 </resources>
