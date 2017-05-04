@@ -19,7 +19,7 @@
             android:layout_marginLeft="50dp"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/asset3"
+            android:background="@drawable/btn3"
             android:id="@+id/spinner">
         </Spinner>
     </LinearLayout>
@@ -34,7 +34,7 @@
             android:layout_marginLeft="50dp"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/asset3"
+            android:background="@drawable/btn3"
             android:hint="Licence Plate"
             android:textAlignment="center"
             android:fontFamily="sans-serif-condensed"
@@ -52,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@drawable/asset1"
+            android:background="@drawable/btn1"
             android:id="@+id/sendBtn">
         </ImageButton>
     </LinearLayout>
