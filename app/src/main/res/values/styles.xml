@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+
+    If you are using Theme.Holo.Light and want to use the Theme.Holo.Light.NoActionBar variant on pre 3.2 devices you can add this to your styles.xml:
+
+
+
 </resources>

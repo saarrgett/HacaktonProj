@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:text="G Parking"
+            android:text="GParking"
             android:textSize="@dimen/h4"
             android:gravity="center"
             android:textColor="#ffffff"
@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/signinhint"
             android:layout_width="match_parent"
-            android:text="Sign in to your ZerPhone account"
+            android:text="Sign in to your GParking account"
             android:textSize="@dimen/p"
             android:gravity="center"
             android:textColor="#ffffff"
